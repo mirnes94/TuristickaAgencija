@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+}
+@model TuristickaAgencija.ViewModel.PosaljiPorukuVM;
+@{
+  
+    Layout = "_LayoutUser";
+}
+
+<form asp-action="Potvrdi" asp-controller="SmsGateway" method="post">
+
+        <div class="form-group">
+            <label asp-for="PosiljalacPoruke">Pošiljalac poruke</label>
+            <input asp-for="PosiljalacPoruke" type="text" class="form-control" readonly />
+            <span asp-validation-for="PosiljalacPoruke" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PrimalacPoruke">Primalac poruke</label>
+            <input asp-for="PrimalacPoruke" type="text" class="form-control" readonly />
+            <span asp-validation-for="PrimalacPoruke" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SadrzajPoruke">Sadržaj poruke</label>
+            @Html.TextAreaFor(m => m.SadrzajPoruke,new { rows = "3", cols = "20", @class = "form-control" })
+            <span asp-validation-for="SadrzajPoruke" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Posalji poruku" class="btn btn-default" />
+            </div>
+        </div>
+  
+
+</form>
+
+
+
+  

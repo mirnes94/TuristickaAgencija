@@ -1,0 +1,52 @@
+﻿@model List<TuristickaAgencija.EntityModels.Drzava>
+
+@{
+    ViewData["Title"] = "Države";
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema država za prikaz.</span>
+
+        <a asp-controller="Drzave" asp-action="Dodaj" class="btn btn-info btn-xs float-right">Dodaj</a>
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Naziv
+                </th>
+                <th class="text-right">
+                    <a asp-controller="Drzave" asp-action="Dodaj" class="btn btn-info btn-sm">Dodaj</a>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var drzava in Model)
+            {
+                <tr>
+                    <td>@drzava.Naziv</td>
+                    <td class="text-right">
+                        <a asp-controller="Drzave" asp-action="Izmjena" asp-route-id="@drzava.DrzavaId" class="btn btn-info btn-sm">Izmijeni</a>
+                        <a asp-controller="Drzave" asp-action="Izbrisi" asp-route-id="@drzava.DrzavaId" class="btn btn-danger btn-sm">Izbriši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}

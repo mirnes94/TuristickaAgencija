@@ -1,0 +1,21 @@
+﻿@model TuristickaAgencija.ViewModel.PutniciKorisniciUrediVM
+@using TuristickaAgencija.EntityModels;
+@{
+    ViewData["Title"] = "Dodaj";
+    var korisnici = (List<Korisnik>)ViewData["putnicikorisnici-kljuc"];
+
+}
+
+<h2>Dodaj</h2>
+<form action="/PutniciKorisnici/Dodaj">
+    <label>Odaberite korisnika</label>
+    @Html.DropDownListFor(s => s.KorisnikID, Model.korisnici);
+
+
+
+
+
+    <input type="submit" value="submit" />
+
+</form>
+

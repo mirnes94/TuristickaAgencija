@@ -1,0 +1,81 @@
+﻿
+@using TuristickaAgencija.ViewModel
+@model List<KlijentPrikaziVM>
+
+
+@{
+
+}
+
+
+@using (Html.BeginForm("Index", "Klijent", FormMethod.Get))
+{
+
+
+
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Unesite ime ili prezime..." aria-label="Search" aria-describedby="basic-addon2">
+        <button class="btn btn-info" type="submit" asp-action="SearchKorisnik">
+            <i class="fa fa-search fa-sm "></i>
+            Pretrazi
+        </button>
+
+    </div>
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+            </th>
+        </tr>
+    </thead>
+</table>
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema korisnika za prikaz.</span>
+
+        <a asp-controller="Klijent" asp-action="Dodaj" class="btn btn-info btn-xs float-right">Dodaj</a>
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Datum rodjenja</th>
+                <th>Kontakt</th>
+                <th>JMBG</th>
+                <th>Grad</th>
+                <th class="text-right">
+                    <a asp-controller="Klijent" asp-action="Dodaj" class="btn btn-info btn-sm">Dodaj</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Ime</td>
+                    <td>@x.Prezime</td>
+                    <td>@x.DatumRodjenja</td>
+                    <td>@x.Kontakt</td>
+                    <td>@x.JMBG</td>
+                    <td>@x.Grad</td>
+                    <td class="text-right">
+                        <a asp-controller="Klijent" asp-action="Uredi" asp-route-id="@x.KlijentId" class="btn btn-info btn-sm">Uredi</a>
+                        <a asp-controller="Klijent" asp-action="Obrisi" asp-route-id="@x.KlijentId" class="btn btn-danger btn-sm">Obriši</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+}

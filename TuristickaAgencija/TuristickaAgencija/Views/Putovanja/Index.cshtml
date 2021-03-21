@@ -1,0 +1,75 @@
+﻿
+@using TuristickaAgencija.ViewModel
+@model List<PutovanjaPrikaziVM>
+
+
+@{
+
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+            </th>
+        </tr>
+    </thead>
+</table>
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema putovanja za prikaz.</span>
+
+        <a asp-controller="Putovanja" asp-action="Dodaj" class="btn btn-info btn-xs float-right">Dodaj</a>
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Naziv putovanja</th>
+                <th>Opis putovanja</th>
+                <th>Cijena putovanja</th>
+                <th>Datum polaska</th>
+                <th>Datum dolaska</th>
+                <th>Broj putnika</th>
+                <th>Popis putnika</th>
+                @*<th>Klijent</th>*@
+                <th>Prevoz</th>
+                <td>Smjestaj</td>
+                <th class="text-right">
+                    <a asp-controller="Putovanja" asp-action="Dodaj" class="btn btn-info btn-sm">Dodaj</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+            <tr>
+                <td>@x.NazivPutovanja</td>
+                <td>@x.OpisPutovanja</td>
+                <td>@x.CijenaPutovanja</td>
+                <td>@x.DatumPolaska</td>
+                <td>@x.DatumDolaska</td>
+                <td>@x.BrojPutnika</td>
+                <td>@x.PopisPutnika</td>
+
+                @*<td>@x.Klijent</td>*@
+                <td>@x.Prevoz</td>
+                <td>@x.Smjestaj</td>
+
+                <td class="text-right">
+                    <a asp-controller="Putovanja" asp-action="Uredi" asp-route-id="@x.PutovanjaId" class="btn btn-info btn-sm">Uredi</a>
+                    <a asp-controller="Putovanja" asp-action="Obrisi" asp-route-id="@x.PutovanjaId" class="btn btn-danger btn-sm">Obriši</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+}

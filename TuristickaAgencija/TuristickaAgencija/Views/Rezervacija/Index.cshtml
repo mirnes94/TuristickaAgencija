@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<TuristickaAgencija.ViewModel.KlijentRezervacijaPrikaziVM>
+
+
+@{
+    Layout = "_Layout";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+                <a asp-controller="Rezervacija" asp-action="Potvrdjene" class="btn btn-info btn-sm">Potvrđeni zahtjevi za rezervaciju</a>
+                <a asp-controller="Rezervacija" asp-action="Odbijene" class="btn btn-info btn-sm">Odbijeni zahtjevi za rezervaciju</a>
+            </th>
+        </tr>
+        
+    </thead>
+</table>
+<h2>Zahtjevi za rezervaciju</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Klijent</th>
+            <th>Putovanje</th>
+            <th>Datum rezervacije</th>
+            <th>Broj osoba</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                @if (x.Status == "")
+                {
+                    <td>@x.Ime</td>
+                    <td>@x.Klijent</td>
+                    <td>@x.Putovanje</td>
+                    <td>@x.DatumRezervacije</td>
+                    <td>@x.BrojOsoba</td>
+                    <td class="text-right">
+                        <a asp-controller="Rezervacija" asp-action="Pregled"
+                           asp-route-rezervacijaid="@x.RezervacijaId"
+                           asp-route-putovanjeid="@x.PutovanjeId"
+                           asp-route-klijentid="@x.KlijentId"
+                           asp-route-ime="@x.Ime"
+                           asp-route-datum="@x.DatumRezervacije"
+                           asp-route-brojosoba="@x.BrojOsoba"
+                           class="btn btn-info btn-sm">
+                            Pregled rezervacije
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+
+    </tbody>
+
+</table>

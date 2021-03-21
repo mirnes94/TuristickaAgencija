@@ -1,0 +1,49 @@
+﻿@using TuristickaAgencija.Models
+@model TuristickaAgencija.ViewModel.UplateUrediVM
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<h2>Uredi uplatu</h2>
+<br />
+
+
+<form action="/Uplate/Snimi" method="post">
+    <input asp-for="UplataId" hidden />
+    <div class="form-group">
+        <label>Iznos uplate</label>
+        <input asp-for="Iznos" class="form-control" />
+
+    </div>
+
+    <div class="form-group">
+        <label>Datum uplate</label>
+        <input type="date" asp-for="DatumUplate" class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        <label>Korisnik</label>
+        <select asp-for="KlijentId" asp-items="@Model.klijenti" class="form-control"></select>
+
+    </div>
+
+    <div class="form-group">
+        <label>Putovanje</label>
+        <select asp-for="PutovanjaId" asp-items="@Model.putovanja" class="form-control"></select>
+
+
+    </div>
+
+
+
+
+
+
+    <input type="submit" value="Snimi" class="btn btn-warning" />
+</form>
+
+
+
+
+

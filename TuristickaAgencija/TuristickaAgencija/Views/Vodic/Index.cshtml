@@ -1,0 +1,114 @@
+﻿@model List<TuristickaAgencija.ViewModel.VodicPrikaziVM>
+@using TuristickaAgencija.Helpers
+
+@{
+    ViewData["Title"] = "Vodici";
+}
+<br />
+
+<br />
+
+@using (Html.BeginForm("Index", "Vodic", FormMethod.Get))
+{
+
+
+
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Unesite ime ili prezime..." aria-label="Search" aria-describedby="basic-addon2">
+        <button class="btn btn-info" type="submit" asp-action="SearchVodic">
+            <i class="fa fa-search fa-sm "></i>
+            Pretrazi
+        </button>
+
+    </div>
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema vodica za prikaz.</span>
+
+        <a asp-controller="Vodic" asp-action="Dodaj" class="btn btn-info btn-xs float-right">Dodaj</a>
+    </div>
+}
+
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Ime
+                </th>
+                <th>
+                    Prezime
+                </th>
+                <th>
+                    Kontakt
+                </th>
+                <th>
+                    JMBG
+                </th>
+                <th>
+                    Putovanje
+                </th>
+                <th>
+                    Photo
+                </th>
+
+                <th class="text-right">
+                    <a asp-controller="Vodic" asp-action="Dodaj" class="btn btn-info btn-sm">Dodaj</a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var i in Model)
+            {
+
+                <tr>
+
+                    <td>@i.Ime</td>
+                    <td>@i.Prezime</td>
+                    <td>@i.Kontakt</td>
+                    <td>@i.JMBG</td>
+
+
+                    <td>@i.Putovanje</td>
+
+                    <td><img alt="Nema slike" src="@SlikaBase64.Prikaz(i.Slika)" height="200" width="150" /></td>
+                    <td class="text-right">
+
+                        <a asp-action="Uredi" asp-route-VodicId="@i.VodicId" class="btn btn-info btn-sm">Uredi</a>
+
+
+                    </td>
+                    <td class="text-right">
+                        @*<td><a href="/Vodici/Obrisi?VodicId=@i.VodicId" class="btn btn-danger btn-sm">Obrisi</a></td>*@
+                        <a asp-action="Obrisi" asp-route-VodicId="@i.VodicId" class="btn btn-danger btn-sm">Obrisi</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<style>
+    .alert a {
+    color: #fff;
+    text-decoration: none;
+   
+    font-size: 15px;
+    width: 10%;
+    padding: 5px;
+}
+</style>

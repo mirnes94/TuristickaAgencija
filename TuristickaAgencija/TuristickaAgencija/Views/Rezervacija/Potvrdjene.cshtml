@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<TuristickaAgencija.ViewModel.KlijentRezervacijaPrikaziVM>
+
+
+@{
+    Layout = "_Layout";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+                <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-info btn-sm">Zahtjevi za rezervaciju</a>
+                <a asp-controller="Rezervacija" asp-action="Odbijene" class="btn btn-info btn-sm">Odbijeni zahtjevi za rezervaciju</a>
+            </th>
+        </tr>
+        
+           
+    </thead>
+</table>
+<h2>Potvrđeni zahtjevi za rezervaciju</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Klijent</th>
+            <th>Putovanje</th>
+            <th>Datum rezervacije</th>
+            <th>Broj osoba</th>
+            <th>Status</th>
+            <th>Napomena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                
+                    <td>@x.Ime</td>
+                    <td>@x.Klijent</td>
+                    <td>@x.Putovanje</td>
+                    <td>@x.DatumRezervacije</td>
+                    <td>@x.BrojOsoba</td>
+                    <td>@x.Status</td>
+                    <td>@x.Napomena</td>
+                             
+            </tr>
+        }
+
+    </tbody>
+
+</table>

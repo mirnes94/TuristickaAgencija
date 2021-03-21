@@ -1,0 +1,48 @@
+﻿@using TuristickaAgencija.EntityModels
+@model TuristickaAgencija.ViewModel.PutniciKorisniciUrediVM
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<h2>Uredi</h2>
+
+
+<form action="/PutniciKorisnici/Snimi" method="post">
+    @Html.HiddenFor(s => s.PutnikKorisnikID)
+    <div class="form-group">
+        <label>Korisnik</label>
+        @Html.DropDownListFor(s => s.KorisnikID, Model.korisnici)
+    </div>
+
+    <input type="submit" value="Snimi" />
+</form>
+
+<style>
+    form
+    {
+        background-color:#7fd9be;
+        padding:10px;
+    }
+    input
+    {
+        background-color:cadetblue;
+        color:#fff;
+    }
+    label {
+    font-size: 23px;
+}
+    select#KorisnikID {
+    
+    margin-left: 3%;
+    padding: 4px;
+}
+    input:hover
+    {
+        background-color:lightblue;
+        color:#fff;
+    }
+    input[type="submit"]
+    {
+        width:10%;
+    }
+</style>

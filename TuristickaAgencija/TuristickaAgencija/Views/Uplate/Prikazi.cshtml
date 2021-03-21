@@ -1,0 +1,130 @@
+﻿@using TuristickaAgencija.Models
+@model TuristickaAgencija.ViewModel.UplatePrikaziVM
+
+@{
+    ViewData["Title"] = "Prikazi";
+    int broj = 1;
+}
+
+<h3>UPLATE</h3>
+<br />
+<br />
+<a asp-action="PretragaPutovanje" class="btn btn-info " id="pretraga"> Pretraga po putovanju... </a>
+<a asp-action="PretragaKlijent" class="btn btn-info " id="pretraga"> Pretraga po klijentu... </a>
+
+<br />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>R.br</th>
+            <th>Iznos</th>
+            <th>DatumUplate</th>
+            <th>Korisnik</th>
+            <th>Svrha</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in Model.lista)
+        {
+            <tr>
+                <td>@(broj++)</td>
+                <td>
+                    @x.Iznos KM
+                </td>
+                <td>@x.DatumUplate</td>
+                <td>@x.Klijent</td>
+                <td>@x.Svrha</td>
+
+
+
+
+                <td>
+                    <a asp-action="Uredi" asp-route-UplataID="@x.UplataId" class="btn btn-info">Uredi</a>|
+                    <a asp-action="Obrisi" asp-route-UplataID="@x.UplataId" class="btn btn-danger">Obrisi</a>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+<br />
+
+<label>Broj izvršenih uplata: <input asp-for="BrojUplata" class="inp" readonly /> </label>
+<br />
+<label>Ukupan iznos uplata: <input asp-for="UkupnoUplaceno" class="inp" readonly>KM</label>
+<br />
+<br />
+
+<a asp-action="Dodaj" class="btn btn-success">Dodaj novu uplatu</a>
+
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
+
+<style>
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .previous {
+        background-color: gray;
+        color: white;
+        padding: 7px;
+        border-radius: 5px;
+        outline: none;
+    }
+
+        .previous:hover {
+            background-color: lightgray;
+            text-decoration: none;
+        }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: cornflowerblue;
+        color: white;
+        cursor: pointer;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+        #myBtn:hover {
+            background-color: gray;
+        }
+</style>
+<script>
+    mybutton = document.getElementById("myBtn");
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }</script>

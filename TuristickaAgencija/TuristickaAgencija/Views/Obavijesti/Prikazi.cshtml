@@ -1,0 +1,104 @@
+﻿@model List<TuristickaAgencija.ViewModel.ObavijestiPrikaziVM>
+@using TuristickaAgencija.Helpers
+
+@{
+    ViewData["Title"] = "Prikazi";
+    int trenutno = (int)ViewData["trenutno"];
+    int ukupno = (int)ViewData["ukupno"];
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema obavjesti za prikaz.</span>
+
+        <a asp-controller="Obavjesti" asp-action="Dodaj" class="btn btn-info btn-xs float-right">Dodaj</a>
+    </div>
+}
+
+else
+{
+
+    @foreach (var i in Model)
+    {
+
+        <div class="card" style="width:480px;margin:0 25%;padding:10px;">
+            @if (i.Slika == null)
+            {
+
+                <img src="@SlikaBase64.Prikaz(i.Slika)" style="border-radius:5px;box-shadow:5px 5px 5px; " height=250 width="477" />
+            }
+            else
+            {
+
+                <img alt="Nema slike" src="@SlikaBase64.Prikaz(i.Slika)" style="border-radius:5px;box-shadow:5px 5px 5px; " height=250>
+            }
+
+        <div class="card-body">
+            <h4 class="card-title"><b>@i.Datum</b></h4><br />
+
+            <h4 class="card-title"><b>@i.Klijent</b></h4><br />
+
+            <h4 class="card-title"><b>@i.Naziv</b></h4>
+
+            <p class="card-text" style="width:477px;">@i.Sadrzaj</p>
+
+            <div style="width:477px;">
+                <a asp-action="Uredi" asp-route-ObavijestID="@i.ObavijestID" class="btn btn-primary ">Uredi</a>
+                <a asp-action="Obrisi" asp-route-ObavijestID="@i.ObavijestID" class="btn btn-danger">Obriši</a>
+            </div>
+        </div>
+        </div>
+    }
+
+}
+<div class="paginacija" sstyle="margin:0 25%;">
+    <ul class="pagination" style="display:inline-block;">
+
+        @if (trenutno <= 1)
+        {
+            <li class="disabled">
+                <span aria-hidden="true">&laquo;</span>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="/Obavijesti/Prikazi?velicinaStr=1&trenutnaStr=@(trenutno - 1)" aria-label="Prethodna">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+        @for (int i = 1; i <= ukupno; i++)
+        {
+            <li class="@(trenutno == i ? "active" : "")"><a href="/Obavijesti/Prikazi?velicinaStr=1&trenutnaStr=@i">@i</a></li>
+        }
+        @if (trenutno >= ukupno)
+        {
+            <li class="disabled">
+                <span aria-hidden="true">&raquo;</span>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="/Obavijesti/Prikazi?velicinaStr=1&trenutnaStr=@(trenutno+1)" aria-label="Naredna">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
+        <li>
+        </li>
+    </ul>
+</div>
+<a asp-action="Dodaj" class="btn btn-primary">Dodaj obavijest</a>

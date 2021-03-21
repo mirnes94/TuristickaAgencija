@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<TuristickaAgencija.ViewModel.ObavijestiPrikaziVM>
+@using TuristickaAgencija.Helpers
+
+@{
+    Layout = "_LayoutUser";
+}
+
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema obavijesti za prikaz.</span>
+
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Sadrzaj</th>
+                <th>Datum</th>
+                <th>Slika</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                @if (x.Naziv != "Zahtjev za rezervaciju")
+                {
+                    <tr>
+
+                        <td>@x.Naziv</td>
+                        <td>@x.Sadrzaj</td>
+                        <td>@x.Datum</td>
+                        <td><img alt="Nema slike" src="@SlikaBase64.Prikaz(x.Slika)" height="50" width="50" /></td>
+
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+
+    </table>
+
+
+}

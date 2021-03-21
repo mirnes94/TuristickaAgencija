@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutUser";
+}
+@using TuristickaAgencija.EntityModels
+@model PutnikKorisnik
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="KlijentHome" asp-action="Index" class="btn btn-info btn-sm">Home</a>
+                <a class="btn btn-info btn-sm" asp-action="Index" asp-controller="KlijentPutovanja" asp-route-id="@Model.KorisnickiNalogId">Vise informacija</a>
+            </th>
+        </tr>
+
+    </thead>
+</table>
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>Naziv putovanja</th>
+            <th>Opis putovanja</th>
+            <th>Cijena putovanja</th>
+            <th>Datum polaska</th>
+            <th>Datum dolaska</th>
+            <th>Broj putnika</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+
+</table>

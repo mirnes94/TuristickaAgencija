@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model TuristickaAgencija.ViewModel.KlijentRezervacijaDodajUrediVM
+@{
+    Layout = "_LayoutUser";
+    if (Model.RezervacijaId == 0)
+    {
+        ViewData["Title"] = "Dodavanje rezervacije";
+    }
+    else
+    {
+        ViewData["Title"] = "Uređivanje rezervacije";
+    }
+}
+<h3>@ViewData["Title"]</h3>
+<hr />
+<form asp-controller="KlijentRezervacija" asp-action="Snimi">
+    <input asp-for="RezervacijaId" type="hidden" />
+    <input asp-for="KlijentId" type="hidden" />
+    <input asp-for="PutovanjeId" type="hidden" />
+    <div class="form-group">
+        <label asp-for="ImePrezimeKlijenta">Ime i prezime</label>
+        <input asp-for="ImePrezimeKlijenta" type="text" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="NazivPutovanja">Naziv putovanja</label>
+        <input asp-for="NazivPutovanja" type="text" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Datum">Datum</label>
+        <input asp-for="Datum" type="datetime" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Ime">Ime</label>
+        <input asp-for="Ime" type="text" class="form-control" />
+        <span asp-validation-for="Ime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BrojOsoba">Broj osoba</label>
+        <input asp-for="BrojOsoba" type="number" class="form-control" />
+        <span asp-validation-for="BrojOsoba" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Spremi</button>
+</form>

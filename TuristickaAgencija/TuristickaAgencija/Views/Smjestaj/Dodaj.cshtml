@@ -1,0 +1,61 @@
+﻿@using TuristickaAgencija.Models;
+@model TuristickaAgencija.ViewModel.SmjestajUrediVM;
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+
+
+
+<form enctype="multipart/form-data" asp-action="Snimi" method="post">
+    @Html.HiddenFor(s => s.SmjestajID)
+    <div class="form-group">
+        <label>Naziv smještaja</label>
+        <input asp-for="NazivSmjestaja" class="form-control" />
+        <span asp-validation-for="NazivSmjestaja" class="text-danger"></span>
+        <br />
+    </div>
+
+    <div class="form-group">
+        <label>Opis smještaja</label>
+        <input asp-for="OpisSmjestaja" class="form-control" />
+        <span asp-validation-for="OpisSmjestaja" class="text-danger"></span>
+
+        <br />
+    </div>
+
+
+    <div class="form-group">
+        <label>Grad</label>
+        <select asp-for="GradID" asp-items="@Model.Grad" class="form-control"></select>
+        <span asp-validation-for="GradID" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label>Cijena nocenja</label>
+        <input asp-for="CijenaNocenja" class="form-control" />
+        <span asp-validation-for="CijenaNocenja" class="text-danger"></span>
+
+        <br />
+    </div>
+    <div class="form-group">
+        <label>Tip sobe</label>
+        <input asp-for="Tip_sobe" class="form-control" />
+        <span asp-validation-for="Tip_sobe" class="text-danger"></span>
+
+        <br />
+    </div>
+    <div class="form-group">
+        <label>Slika </label>
+        <input asp-for="Slika" type="file" accept="image/*" class="form-control" />
+
+        <br />
+    </div>
+
+
+
+
+
+    <input type="submit" value="Snimi" class="btn btn-warning" />
+</form>
+

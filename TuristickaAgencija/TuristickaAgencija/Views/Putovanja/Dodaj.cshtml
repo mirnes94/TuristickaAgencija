@@ -1,0 +1,70 @@
+﻿@using TuristickaAgencija.EntityModels;
+@model TuristickaAgencija.ViewModel.PutovanjaDodajUrediVM
+@{
+    if (Model.PutovanjaId == 0)
+    {
+        ViewData["Title"] = "Dodavanje putovanja";
+    }
+    else
+    {
+        ViewData["Title"] = "Uređivanje putovanja";
+    }
+}
+
+
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<form asp-controller="Putovanja" asp-action="Snimi">
+    <input asp-for="PutovanjaId" type="hidden" />
+    <div class="form-group">
+        <label asp-for="NazivPutovanja">Naziv putovanja</label>
+        <input asp-for="NazivPutovanja" type="text" class="form-control" />
+        <span asp-validation-for="NazivPutovanja" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OpisPutovanja">Opis putovanja</label>
+        <input asp-for="OpisPutovanja" type="text" class="form-control" />
+        <span asp-validation-for="OpisPutovanja" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CijenaPutovanja">Cijena putovanja</label>
+        <input asp-for="CijenaPutovanja" type="text" class="form-control" />
+        <span asp-validation-for="CijenaPutovanja" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DatumPolaska">Datum polaska</label>
+        <input asp-for="DatumPolaska" type="date" class="form-control" />
+        <span asp-validation-for="DatumPolaska" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DatumDolaska">Datum dolaska</label>
+        <input asp-for="DatumDolaska" type="date" class="form-control" />
+        <span asp-validation-for="DatumDolaska" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BrojPutnika">Broj putnika</label>
+        <input asp-for="BrojPutnika" type="number" class="form-control" />
+        <span asp-validation-for="BrojPutnika" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PopisPutnika">Popis putnika</label>
+        <input asp-for="PopisPutnika" type="text" class="form-control" />
+        <span asp-validation-for="PopisPutnika" class="text-danger"></span>
+    </div>
+    @*<div class="form-group">
+        <label asp-for="KlijentId">Klijent </label>
+        <select asp-for="KlijentId" class="form-control" asp-items="@Model.Klijent"></select>
+    </div>*@
+<div class="form-group">
+    <label asp-for="PrevozId">Prevoz </label>
+    <select asp-for="PrevozId" class="form-control" asp-items="@Model.Prevoz"></select>
+    <span asp-validation-for="PrevozId" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="SmjestajId">Smjestaj </label>
+    <select asp-for="SmjestajId" class="form-control" asp-items="@Model.Smjestaj"></select>
+    <span asp-validation-for="SmjestajId" class="text-danger"></span>
+</div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+</form>

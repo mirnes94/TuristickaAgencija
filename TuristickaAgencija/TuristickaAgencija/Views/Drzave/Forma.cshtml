@@ -1,0 +1,32 @@
+﻿@using TuristickaAgencija.EntityModels;
+@model Drzava;
+
+@{
+    if (Model.DrzavaId == 0)
+    {
+        ViewData["Title"] = "Dodavanje države";
+    }
+    else
+    {
+        ViewData["Title"] = "Izmjena države";
+    }
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<form asp-controller="Drzave" asp-action="Snimi">
+    <input asp-for="DrzavaId" type="hidden" />
+
+    <div class="form-group">
+        <label asp-for="Naziv">Naziv</label>
+        <input asp-for="Naziv" type="text" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+</form>

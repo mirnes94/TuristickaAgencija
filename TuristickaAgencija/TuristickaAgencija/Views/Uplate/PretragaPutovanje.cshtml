@@ -1,0 +1,20 @@
+﻿@model TuristickaAgencija.ViewModel.UplataPutovanjaPretragaVM;
+@{
+    ViewData["Title"] = "PretragaPutovanje";
+}
+
+<h3>Pretraga uplata po putovanju...</h3>
+
+<form asp-action="PrikazUplataPoPutovanju" ajax-poziv="da" ajax-rezultat="ajaxDiv" method="post">
+    <br />
+    <label>Odaberi putovanje:</label><select asp-for="PutovanjeID" asp-items="@Model.Putovanja" class="form-control"></select><br />
+
+    <input type="submit" ajax-poziv="da" ajax-rezultat="ajaxDiv" asp-action="PrikazUplataPoPutovanju" class="btn btn-warning" value="Uredu" />
+
+</form>
+
+<br />
+<br />
+<div id="ajaxDiv" style="border:1px solid black;"></div>
+<br />
+

@@ -1,0 +1,39 @@
+﻿@using TuristickaAgencija.Models
+@using TuristickaAgencija.ViewModel
+
+@{
+    ViewData["Title"] = "Prikazi";
+    List<ZaposlenikPrikaziVM> zaposlenici = (List<ZaposlenikPrikaziVM>)ViewData["zaposlenik-kljuc"];
+
+}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ime i Prezime</th>
+                <th>Strucna sprema</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var x in zaposlenici)
+            {
+            <tr style="text-align:center">
+                <td>
+                    @x.ImeIPrezime
+                </td>
+                <td>@x.StrucnaSprema</td>
+
+                <td><a href="/Zaposlenici/Obrisi?ZaposlenikID=@x.ZaposlenikId" class="btn btn-danger">Obrisi</a></td>
+                <td><a href="/Zaposlenici/Uredi?ZaposlenikID=@x.ZaposlenikId" class="btn btn-info">Uredi</a></td>
+
+
+            </tr>
+            }
+        </tbody>
+
+    </table>
+    <a href="/Zaposlenici/Dodaj" class="btn btn-success">Dodaj novog zaposlenika</a>
+

@@ -1,0 +1,28 @@
+﻿@using TuristickaAgencija.EntityModels
+@model TuristickaAgencija.ViewModel.ZaposlenikUrediVM
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<h2>Uredi</h2>
+
+
+<form action="/Zaposlenici/Snimi" method="post">
+    @Html.HiddenFor(s => s.ZaposlenikId)
+    <div class="form-group">
+        <label>Korisnik</label>
+        @Html.DropDownListFor(s => s.KorisnikId, Model.korisnici)
+
+    </div>  <div class="form-group">
+        <label>Strucna sprema</label>
+        @Html.TextBoxFor(s => s.StrucnaSprema)
+    </div>
+
+
+
+
+
+    <input type="submit" value="Snimi" />
+</form>
+
+

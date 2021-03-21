@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<TuristickaAgencija.ViewModel.PutovanjaPrikaziVM>
+@using TuristickaAgencija.Helpers
+
+@{
+    Layout = "_LayoutUser";
+}
+
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema putovanja za prikaz.</span>
+
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Naziv putovanja</th>
+                <th>Opis</th>
+                <th>Cijena</th>
+                <th>Broj putnika</th>
+                <th>Datum polaska-Datum dolaska</th>
+                <th>Prevoz-Tip prevoza-Broj mjesta-Cijena po mjesta</th>
+                <th>Smjestaj-Opis smjestaja-Cijena noćenja-Tip sobe-Grad-Drzava</th>
+                <th>Slika</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.NazivPutovanja</td>
+                    <td>@x.OpisPutovanja</td>
+                    <td>@x.CijenaPutovanja</td>
+                    <td>@x.BrojPutnika</td>
+                    <td>@x.DatumPolaska @x.DatumDolaska</td>
+                    <td>@x.Prevoz<br />@x.TipPrevoza<br />@x.BrojMjesta<br />@x.CijenaPoMjestu</td>
+                    <td>@x.Smjestaj<br />@x.OpisSmjestaja<br />@x.CijenaNoćenja<br />@x.TipSobe<br />@x.Grad<br />@x.Drzava</td>
+                    <td><img alt="Nema slike" src="@SlikaBase64.Prikaz(x.Slika)" height="150" width="150" /></td>
+                    <td class="text-right">
+                        <a asp-controller="KlijentRezervacija" asp-action="Dodaj" asp-route-putovanjeid="@x.PutovanjaId" asp-route-klijentid="@x.KorisnikId" class="btn btn-info btn-sm">Kreiraj rezervaciju</a>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+}

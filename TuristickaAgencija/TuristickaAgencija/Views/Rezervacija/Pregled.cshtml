@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TuristickaAgencija.ViewModel.RezervacijaDodajVM
+@{
+    Layout = "_Layout";
+}
+
+<h3>Pregled rezervacije</h3>
+<hr />
+<form asp-controller="Rezervacija" asp-action="Potvrdi">
+    <input asp-for="RezervacijaId" type="hidden" />
+    <input asp-for="KlijentId" type="hidden" />
+    <input asp-for="PutovanjeId" type="hidden" />
+
+    <div class="form-group">
+        <label asp-for="Ime">Ime</label>
+        <input asp-for="Ime" type="text" class="form-control" readonly />
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Datum">Datum</label>
+        <input asp-for="Datum" type="datetime" class="form-control" readonly />
+
+    </div>
+    <div class="form-group">
+        <label asp-for="BrojOsoba">Broj osoba</label>
+        <input asp-for="BrojOsoba" type="number" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Status">Status</label>
+        <input asp-for="Status" type="text" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Napomena">Napomena</label>
+        <input asp-for="Napomena" type="text" class="form-control" />
+        <span asp-validation-for="Napomena" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Potvrdi</button>
+
+</form>

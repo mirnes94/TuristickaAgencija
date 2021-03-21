@@ -1,0 +1,51 @@
+﻿@model TuristickaAgencija.ViewModel.UplateUrediVM
+@{
+    ViewData["Title"] = "Dodaj";
+
+}
+
+<h3>Nova uplata: </h3>
+<br />
+<form asp-action="Snimi" method="post">
+    @if (@Model.Placeno)
+    {
+        <b class="text-danger">Potreban iznos je već uplaćen!</b>
+        <br />
+    }
+
+    <input asp-for="UplataId" hidden /><br />
+    <div class="form-group">
+        <label>Iznos uplate</label>
+        <input asp-for="Iznos" class="form-control" placeholder="0-*" />
+        <span asp-validation-for="Iznos" class="text-danger"></span>
+
+
+    </div>
+    <div class="form-group">
+        <label>Putovanje</label>
+        <select asp-for="PutovanjaId" asp-items="@Model.putovanja" class="form-control"></select>
+
+
+    </div>
+
+
+
+    <div class="form-group">
+        <label>Datum uplate</label>
+        <input type="date" asp-for="DatumUplate" class="form-control" readonly />
+    </div>
+
+
+    <div class="form-group">
+        <label>Korisnik</label>
+        <select asp-for="KlijentId" asp-items="@Model.klijenti" class="form-control"></select>
+        <span asp-validation-for="KlijentId" class="text-danger"></span>
+    </div>
+
+
+
+
+    <input type="submit" value="submit" class="btn btn-warning" />
+
+</form>
+

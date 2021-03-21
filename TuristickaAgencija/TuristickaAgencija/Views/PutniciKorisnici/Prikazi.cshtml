@@ -1,0 +1,39 @@
+﻿@using TuristickaAgencija.EntityModels
+@using TuristickaAgencija.ViewModel
+
+@{
+    ViewData["Title"] = "Prikazi";
+    List<PutnikKorisnikPrikaziVM> putnici = (List<PutnikKorisnikPrikaziVM>)ViewData["putnicikorisnici-kljuc"];
+
+}
+
+<h2>Prikazi</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ime i Prezime</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in putnici)
+        {
+        <tr style="text-align:center">
+            <td>
+                @x.ImeIPrezime
+            </td>
+
+
+
+            <td><a href="/PutniciKorisnici/Obrisi?PutnikKorisnikID=@x.PutnikKorisnikId" class="btn btn-danger">Obrisi</a></td>
+            <td><a href="/PutniciKorisnici/Uredi?PutnikKorisnikID=@x.PutnikKorisnikId" class="btn btn-info">Uredi</a></td>
+
+        </tr>
+        }
+    </tbody>
+
+</table>
+<a href="/PutniciKorisnici/Dodaj" class="btn btn-success">Dodaj novog putnika</a>

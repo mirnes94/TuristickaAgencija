@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TuristickaAgencija.ViewModel.PagingRezervacijePrikaziVM
+
+
+@{
+    Layout = "_LayoutUser";
+}
+
+
+
+
+    <form>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Klijent</th>
+                    <th>Putovanje</th>
+                    <th>Datum rezervacije</th>
+                    <th>Broj osoba</th>
+                    <th>Status</th>
+                    <th>Napomena</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.listaRezervacija)
+                {
+                    <tr>
+                        <td>@x.Ime</td>
+                        <td>@x.Klijent</td>
+                        <td>@x.Putovanje</td>
+                        <td>@x.DatumRezervacije</td>
+                        <td>@x.BrojOsoba</td>
+                        <td>@x.Status</td>
+                        <td>@x.Napomena</td>
+                        @if (x.Status == "")
+                        {
+                            <td>
+                                <a asp-controller="KlijentRezervacija" asp-action="Obrisi" asp-route-id="@x.RezervacijaId" class="btn btn-danger btn-sm">Otkazi rezervaciju</a>
+                        <br />
+                                <a asp-controller="KlijentRezervacija" asp-action="Uredi" asp-route-id="@x.RezervacijaId" class="btn btn-secondary btn-sm">Uredi rezervaciju</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="font-style:italic">
+                                <h6>Rezervacija je procesuirana</h6>
+                            </td>
+                        }
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <td>
+                        @if (i != Model.CurrentPageIndex)
+                        {
+
+                            <a class="page-link" href="javascript:PagerClick(@i);">@i</a>
+                        }
+                        else
+                        {
+                            <span class="@(Model.CurrentPageIndex == i ? "active" : "")"> <a class="page-link " href="/KlijentRezervacija/Index?id=@Model.KlijentId&currentPageIndex=@i"><b>@i</b></a></span>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input hidden id="hfCurrentPageIndex" name="currentPageIndex" />
+
+    </form>
+    <script type="text/javascript">
+
+            function PagerClick(index) {
+                document.getElementById("hfCurrentPageIndex").value = index;
+                document.forms[0].method = "POST";
+                document.forms[0].action = "/KlijentRezervacija/Index?id=@Model.KlijentId&currentPageIndex=" + index;
+                document.forms[0].submit();
+            }
+    </script>
+
+
+

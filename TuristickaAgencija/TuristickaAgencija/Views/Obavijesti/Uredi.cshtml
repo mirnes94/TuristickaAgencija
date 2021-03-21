@@ -1,0 +1,53 @@
+﻿@using TuristickaAgencija.Models;
+@model TuristickaAgencija.ViewModel.ObavijestiDodajVM;
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+
+
+
+<form enctype="multipart/form-data" asp-action="Snimi" method="post">
+    @Html.HiddenFor(s => s.ObavijestID)
+    <div class="form-group">
+        <label>Naziv obavijesti</label>
+        <input asp-for="Naziv" class="form-control" />
+        <span asp-validation-for="Naziv" class="text-danger"></span>
+        <br />
+    </div>
+
+    <div class="form-group">
+        <label>Sadrzaj</label>
+        <input asp-for="Sadrzaj" class="form-control" />
+        <span asp-validation-for="Sadrzaj" class="text-danger"></span>
+
+        <br />
+    </div>
+    <div class="form-group">
+        <label asp-for="KlijentId">Klijent</label>
+        <select asp-for="KlijentId" class="form-control" asp-items="@Model.klijenti">Odaberite korisnika</select>
+        <span asp-validation-for="KlijentId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Datum</label>
+        <input asp-for="Datum" class="form-control" />
+        <span asp-validation-for="Datum" class="text-danger"></span>
+
+        <br />
+    </div>
+
+
+    <div class="form-group">
+        <label>Slika </label>
+        <input asp-for="Slika" type="file" accept="image/*" class="form-control" />
+
+        <br />
+    </div>
+
+
+
+
+
+    <input type="submit" value="Snimi" class="btn btn-warning" />
+</form>
+

@@ -1,0 +1,84 @@
+﻿@model List<TuristickaAgencija.ViewModel.SmjestajPrikaziVM>
+@using TuristickaAgencija.Helpers
+
+@{
+    ViewData["Title"] = "Smjestaj";
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-left">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info btn-sm">Menu</a>
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info clearfix">
+        <span>Nema smjestaja za prikaz.</span>
+
+        <a asp-controller="Smjestaj" asp-action="Dodaj" class="btn btn-info btn-xs float-right">Dodaj</a>
+    </div>
+}
+
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Naziv smjestaja
+                </th>
+                <th>
+                    Opis smjestaja
+                </th>
+                <th>
+                    Grad
+                </th>
+                <th>
+                    Cijena nocenja
+                </th>
+                <th>
+                    Tip sobe
+                </th>
+                <th>
+                    Photo
+                </th>
+
+                <th class="text-right">
+                    <a asp-controller="Smjestaj" asp-action="Dodaj" class="btn btn-info btn-sm">Dodaj</a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var smjestaj in Model)
+            {
+
+                <tr>
+
+                    <td>@smjestaj.NazivSmjestaja</td>
+
+                    <td>@smjestaj.OpisSmjestaja</td>
+                    <td>@smjestaj.Grad</td>
+                    <td>@smjestaj.CijenaNocenja</td>
+                    <td>@smjestaj.Tip_sobe</td>
+                    <td><img alt="Nema slike" src="@SlikaBase64.Prikaz(smjestaj.Slika)" height="200" width="150" /></td>
+
+
+                    <td class="text-right">
+
+                        <a asp-action="Uredi" asp-route-SmjestajID="@smjestaj.SmjestajID" class="btn btn-info btn-sm">Uredi</a>
+
+
+                    </td>
+                    <td class="text-right">
+                        <a asp-action="Obrisi" asp-route-SmjestajID="@smjestaj.SmjestajID" class="btn btn-danger btn-sm">Obrisi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

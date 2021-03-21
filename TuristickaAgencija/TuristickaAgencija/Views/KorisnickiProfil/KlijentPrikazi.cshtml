@@ -1,0 +1,71 @@
+﻿@model TuristickaAgencija.ViewModel.KorisnickiProfilIndexVM
+
+@{
+    Layout = "_LayoutUser";
+    ViewData["Title"] = "Prikazi";
+}
+
+
+
+<h2>@Model.Ime @Model.Prezime</h2>
+
+<br />
+
+
+
+<form action="/KorisnickiProfil/KlijentUredi" method="post">
+    <input type="hidden" value="@Model.ProfilId" />
+
+    <h4>O osobi:</h4>
+
+    <div class="form-group">
+        <label>Ime: @Model.Ime</label>
+
+
+    </div>
+
+    <div class="form-group">
+        <label>Prezime: @Model.Prezime</label>
+
+
+    </div>
+
+    <div class="form-group">
+        <label>Datum rođenja: @Model.DatumRodjenja.ToShortDateString()</label>
+
+    </div>
+
+    <div class="form-group">
+        <label>JMBG: @Model.JMBG</label>
+
+
+    </div>
+    @*<div class="form-group">
+        <label>Grad: @Model.Grad</label>
+
+
+    </div>*@
+
+    <h4>Pristupni podaci:</h4>
+
+    <div class="form-group">
+        <label>Korisničko ime: @Model.KorisnickoIme</label>
+
+
+    </div>
+
+
+    <h4>Kontakt podaci:</h4>
+
+    <div class="form-group">
+        <label>Mobitel/Email: @Model.Kontakt</label>
+
+    </div>
+
+    <br />
+
+    <input type="submit" value="Uredi" class="btn btn-info" />
+</form>
+
+
+

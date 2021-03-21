@@ -1,0 +1,105 @@
+﻿@using TuristickaAgencija.Helper
+
+@*@{
+        ViewData["Title"] = "Home Page";
+    }
+
+    @{
+        ViewData["Title"] = "Home Page";
+    }*@
+
+@*<h4>
+        <a asp-controller="Drzave" asp-action="Index">Prikaz država</a>
+    </h4>
+    <h4>
+        <a asp-controller="Gradovi" asp-action="Index">Prikaz gradova</a>
+    </h4>
+    <h4>
+        <a asp-controller="Smjestaj" asp-action="Index">Prikaz smjestaja</a>
+    </h4>
+    <h4>
+        <a asp-controller="Klijent" asp-action="Index">Prikaz korisnika</a>
+    </h4>
+    <h4>
+        <a asp-controller="Firma" asp-action="Index">Prikaz firmi</a>
+    </h4>
+    <h4>
+        <a asp-controller="Prevoz" asp-action="Index">Prikaz prevoza</a>
+    </h4>
+    <h4>
+        <a asp-controller="Putovanja" asp-action="Index">Prikaz putovanja</a>
+    </h4>
+    <h4>
+        <a asp-controller="Uplate" asp-action="Prikazi">Prikaz uplata</a>
+    </h4>
+    <h4>
+        <a asp-controller="Vodic" asp-action="Index">Prikaz vodica</a>
+    </h4>
+    <h4>
+        <a asp-controller="Obavijesti" asp-action="Prikazi">Prikaz obavijesti</a>
+    </h4>
+    <h4>
+        <a asp-controller="Zaposlenici" asp-action="Prikazi">Prikaz zaposlenika</a>
+    </h4>
+    <h4>
+        <a asp-controller="PutniciKorisnici" asp-action="Prikazi">Prikaz putnika/korisnika</a>
+    </h4>*@
+@{
+    ViewData["Title"] = "Home Page";
+
+    string error_poruka = (string)TempData["error_poruka"];
+
+    <p>Dobrodošli  @Context.GetLogiraniKorisnik().KorisnickoIme u administracijski dio turističke agencije "Vivendi Travel"</p>
+
+}
+<div class="slika2">
+    <img src="~/Theme/dist/img/user_pictures.png" alt=" nema slike" class="brand-image img-circle elevation-0" /> <span>@Context.GetLogiraniKorisnik().KorisnickoIme</span>
+
+</div>
+
+<br />
+    <a href="@Url.Action("Prikazi", "KorisnickiProfil")" >
+
+        <p id="prvi">
+            Prikazi profil
+
+        </p>
+    </a>
+
+
+    <a href="@Url.Action("Uredi", "KorisnickiProfil")" >
+
+        <p id="drugi">
+            Uredi profil
+
+        </p>
+    </a>
+    <br />
+
+
+@if (error_poruka != null)
+{
+    <br />
+    <div class="alert alert-danger">
+        @error_poruka
+    </div>
+}
+
+<style>
+    .slika2 img {
+        width: 65px;
+    }
+
+    .slika2 span {
+        font-size: 18px;
+        padding: 5px;
+    }
+    #prvi,#drugi
+    {
+        background-color:cornflowerblue;
+        width:11%;
+        color:white;
+        padding:14px;
+    }
+  
+</style>
